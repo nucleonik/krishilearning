@@ -1,37 +1,103 @@
-import { Tabs } from 'expo-router';
+import { View, Text, Image } from 'react-native';
 import React from 'react';
+import { Tabs } from 'expo-router';
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+const TabLayout = () => {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          backgroundColor: '#FFFFFF',
+          borderTopWidth: 1,
+          borderTopColor: 'grey',
+          height: 54,
+        },
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name="resource"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+          title: 'Resource',
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <Image
+              style={{
+                tintColor: focused ? '#11823B' : '#B1B1B1',
+                width: focused ? 28 : 24,
+                height: focused ? 28 : 24,
+              }}
+              source={require('../../assets/images/resource.png')}
+            />
+          ),
+          tabBarLabel: ({ focused }) => (
+            <Text
+              style={{
+                fontSize: 12,
+                color: focused ? '#11823B' : '#B1B1B1',
+              }}
+            >
+              Resource
+            </Text>
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="progress"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+          title: 'Progress',
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <Image
+              style={{
+                tintColor: focused ? '#11823B' : '#B1B1B1',
+                width: focused ? 28 : 22,
+                height: focused ? 28 : 22,
+              }}
+              source={require('../../assets/images/progress.png')}
+            />
+          ),
+          tabBarLabel: ({ focused }) => (
+            <Text
+              style={{
+                fontSize: 12,
+                color: focused ? '#11823B' : '#B1B1B1',
+              }}
+            >
+              Progress
+            </Text>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: 'Settings',
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <Image
+              style={{
+                tintColor: focused ? '#11823B' : '#B1B1B1',
+                width: focused ? 28 : 24,
+                height: focused ? 28 : 24,
+              }}
+              source={require('../../assets/images/settings.png')}
+            />
+          ),
+          tabBarLabel: ({ focused }) => (
+            <Text
+              style={{
+                fontSize: 12,
+                color: focused ? '#11823B' : '#B1B1B1',
+              }}
+            >
+              Settings
+            </Text>
           ),
         }}
       />
     </Tabs>
   );
-}
+};
+
+export default TabLayout;
